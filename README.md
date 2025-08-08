@@ -50,8 +50,24 @@ application.yaml
     jpa:  
         properties:  
           hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgresDialect  
-  
+  ```
 
+
+## Synthea Data 
+
+git clone https://github.com/synthetichealth/synthea.git  
+cd synthea  
+
+for ten records, the default is FHIR json. 
+  
+./gradlew build  
+./run_synthea 10  
+
+
+ 
+
+The data are here :  
+synthea/output/fhir/
 
 
 
