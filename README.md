@@ -61,14 +61,58 @@ cd synthea
 for ten records, the default is FHIR json. 
   
 ./gradlew build  
-./run_synthea 10  
+./run_synthea -p 10  
 
 
- 
 
 The data are here :  
 synthea/output/fhir/
 
 
+## NCPI FHIR  
+### prerequisites:  
+sushi  
+npm install -g sushi  
+sushi .  
 
-           
+
+git clone https://github.com/NIH-NCPI/ncpi-fhir-ig-2.git
+cd ncpi-fhir-ig-2
+
+
+
+Dependencies:  
+
+
+
+
+./_updatePublisher.sh  
+./_genonce.sh  
+
+
+
+INGEST:  
+```bash 
+for file in *.json; do
+  # Extract resource type and id from filename
+  # Filename pattern: ResourceType-ResourceId.json
+  resource_type="${file%%-*}"
+  resource_id="${file#*-}"
+  resource_id="${resource_id%.json}"
+
+  echo "Uploading $file to $resource_type/$resource_id ..."
+
+  curl -X PUT "http://localhost:8080/fhir/${resource_type}/${resource_id}" \
+       -H "Content-Type: application/fhir+json" \
+       -d @"$file"
+
+  echo ""
+done
+```
+
+for testing:  
+curl -X GET "http://localhost:8080/fhir/StructureDefinition?_summary=count" -H "Accept: application/fhir+json"
+curl -X GET "http://localhost:8080/fhir/CodeSystem?_summary=count" -H "Accept: application/fhir+json"
+curl -X GET "http://localhost:8080/fhir/ValueSet?_summary=count" -H "Accept: application/fhir+json"
+curl -X GET "http://localhost:8080/fhir/Patient?_summary=count" -H "Accept: application/fhir+json"
+
