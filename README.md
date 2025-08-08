@@ -111,8 +111,10 @@ done
 ```
 
 for testing:  
+```bash
 curl -X GET "http://localhost:8080/fhir/StructureDefinition?_summary=count" -H "Accept: application/fhir+json"
 curl -X GET "http://localhost:8080/fhir/CodeSystem?_summary=count" -H "Accept: application/fhir+json"
 curl -X GET "http://localhost:8080/fhir/ValueSet?_summary=count" -H "Accept: application/fhir+json"
 curl -X GET "http://localhost:8080/fhir/Patient?_summary=count" -H "Accept: application/fhir+json"
+```
 
