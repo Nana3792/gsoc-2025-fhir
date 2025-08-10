@@ -107,7 +107,8 @@ for file in *.json; do
        -d @"$file"
 
   echo ""
-done
+
+
 ```
 
 for testing:  
@@ -117,4 +118,4 @@ curl -X GET "http://localhost:8080/fhir/CodeSystem?_summary=count" -H "Accept: a
 curl -X GET "http://localhost:8080/fhir/ValueSet?_summary=count" -H "Accept: application/fhir+json"
 curl -X GET "http://localhost:8080/fhir/Patient?_summary=count" -H "Accept: application/fhir+json"
 ```
-
+<img width="826" height="546" alt="Screenshot 2025-08-02 at 6 08 52 PM" src="https://github.com/user-attachments/assets/0e02c1b1-0277-4b96-9b59-db25453d6e56" />
