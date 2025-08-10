@@ -68,6 +68,19 @@ for ten records, the default is FHIR json.
 The data are here :  
 synthea/output/fhir/
 
+Order of ingestion:  
+1. Organization  
+2. Location  
+3. Practitioner  
+4. PractitionerRole  
+5. Patient  
+6. Encounter  
+7. Condition  
+8. Observation  
+9. Medication  
+10. MedicationRequest  
+11. CareTeam  
+12. CarePlan  
 
 ## NCPI FHIR  
 ### prerequisites:  
