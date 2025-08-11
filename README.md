@@ -148,4 +148,4 @@ Proxy → Client: Passes through response.
 2. Async Support: https://www.python-httpx.org/async/  
 3. URL Parse: https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlparse
 4. FHIR Security: https://www.hl7.org/fhir/security.html
-5. 
+5. Bearer Token Usage: https://www.rfc-editor.org/rfc/rfc6750
