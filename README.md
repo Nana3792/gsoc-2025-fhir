@@ -123,6 +123,7 @@ for file in *.json; do
 
 
 ```
+<img width="492" height="217" alt="Screenshot 2025-08-08 at 2 34 44 PM" src="https://github.com/user-attachments/assets/009a9b64-8201-4977-a3e1-d4b1b65bdba3" />
 
 for testing:  
 ```bash
