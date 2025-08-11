@@ -2,6 +2,14 @@ from fastapi import FastAPI, Request, Header, HTTPException
 from fastapi.responses import JSONResponse  
 import httpx  
 from urllib.parse import urlparse, parse_qs, urlencode, urlunparse  
+from app.config import (
+    ARBORIST_URL,
+    ARBORIST_TIMEOUT,
+    HAPI_FHIR_URL,
+    SECURITY_TAG_PREFIX,
+    PROXY_TIMEOUT
+)
+
 
 app = FastAPI()  
 
