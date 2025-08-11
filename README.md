@@ -133,4 +133,19 @@ curl -X GET "http://localhost:8080/fhir/Patient?_summary=count" -H "Accept: appl
 ```
 
 ## Authorization:
+Architecture Flow  
+
+Client → Proxy: Sends request with Bearer token.  
+Proxy → Arborist: Validates token + gets resources.  
+Proxy → FHIR: Forwards request with _security tags.  
+FHIR → Proxy: Returns filtered data.  
+Proxy → Client: Passes through response.  
 <img width="826" height="546" alt="Screenshot 2025-08-02 at 6 08 52 PM" src="https://github.com/user-attachments/assets/0e02c1b1-0277-4b96-9b59-db25453d6e56" />
+
+
+# LINKS:
+1. Create a FastAPI instance: https://fastapi.tiangolo.com/tutorial/first-steps/  
+2. Async Support: https://www.python-httpx.org/async/  
+3. URL Parse: https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlparse
+4. FHIR Security: https://www.hl7.org/fhir/security.html
+5. 
