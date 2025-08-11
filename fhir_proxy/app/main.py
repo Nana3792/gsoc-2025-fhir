@@ -8,7 +8,7 @@ app = FastAPI()
 
 ####################################################################################################################################
 
-#From Proxy->Arborist->Proxy
+#From Proxy->Arborist
 # Async function to get accessible resource tags from Arborist given a JWT token
 async def get_accessible_resources(token: str) -> list[str]:
     headers = {"Authorization": f"Bearer {token}"}  # Set Authorization header with Bearer token
@@ -17,6 +17,8 @@ async def get_accessible_resources(token: str) -> list[str]:
         resp.raise_for_status()  # Raise exception if HTTP status is 404,401,500 etc
         data = resp.json()  # Parse JSON response from Arborist
         return data.get("resources", [])  # Return list of resource tags, or empty list if missing
+
+#assumes {"resources": ["team1", "project2"]}
 
 
 
@@ -30,10 +32,16 @@ def rewrite_fhir_url(original_url: str, resources: list[str]) -> str:
     query_params["_security"] = security_tags  # Add or overwrite _security parameter with these tags
     new_query = urlencode(query_params, doseq=True)  # Re-encode query parameters; doseq=True encodes lists properly
     return urlunparse(parsed._replace(query=new_query))  # Rebuild full URL with updated query string
+
+
+# Original: https://fhir-server/Patient?name=Alice
+# Rewritten: https://fhir-server/Patient?name=Alice&_security=team1&_security=project2
 ####################################################################################################################################
 
 # Main proxy endpoint that accepts all paths and HTTP methods
 @app.api_route("/{path:path}", methods=["GET", "POST", "PUT", "DELETE"])
+#/{path:path} catches all subpaths
+
 async def proxy_fhir(path: str, request: Request, authorization: str = Header(None)):
     # Check if Authorization header exists and starts with "Bearer "
     if not authorization or not authorization.startswith("Bearer "):
@@ -45,11 +53,16 @@ async def proxy_fhir(path: str, request: Request, authorization: str = Header(No
 
   
  # Call Arborist to get allowed resource tags for this token
+    
     try:
         allowed_resources = await get_accessible_resources(token)
     except httpx.HTTPStatusError as e:  # If Arborist returns error status (e.g. 401 or 403)
         raise HTTPException(status_code=403, detail="Unauthorized or failed to get resources from Arborist")
+    #Status Code Definition 403: A server that receives valid credentials that are not adequate to
+   # gain access ought to respond with the 403 (Forbidden) status code
+   # (Section 6.5.3 of [RFC7231]).
 
+    
     # Rebuild the original FHIR server URL, including any query parameters from user request
     original_url = f"{HAPI_FHIR_URL}/{path}"
     if request.query_params:
