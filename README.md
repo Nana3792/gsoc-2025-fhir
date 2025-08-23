@@ -143,6 +143,11 @@ FHIR → Proxy: Returns filtered data.
 Proxy → Client: Passes through response.  
 <img width="826" height="546" alt="Screenshot 2025-08-02 at 6 08 52 PM" src="https://github.com/user-attachments/assets/0e02c1b1-0277-4b96-9b59-db25453d6e56" />
 
+Arborist 
+export OIDC_ISSUER=https://qa.planx-pla.net/user
+export JWKS_ENDPOINT=https://qa.planx-pla.net/user/.well-known/jwks
+
+./bin/arborist --port 8081
 
 # LINKS:
 1. Create a FastAPI instance: https://fastapi.tiangolo.com/tutorial/first-steps/  
