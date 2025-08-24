@@ -8,7 +8,7 @@ from .config import (
     HAPI_FHIR_URL,
     SECURITY_TAG_PREFIX,
     PROXY_TIMEOUT,
-    GEN3_USER_URL  
+    GEN3_USER_URL,  
 )
 
 app = FastAPI()  
