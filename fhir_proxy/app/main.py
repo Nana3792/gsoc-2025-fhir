@@ -18,7 +18,7 @@ app = FastAPI()
 async def get_gen3_allowed_resources(token: str) -> list[str]:
     headers = {"Authorization": f"Bearer {token}"}
     async with httpx.AsyncClient(timeout=ARBORIST_TIMEOUT) as client:
-        resp = await client.get(GEN3_USER_URL, headers=headers)
+        resp = await client.get(GEN_USER_URL, headers=headers)
         resp.raise_for_status()
         data = resp.json()
         return data.get("resources", [])  
