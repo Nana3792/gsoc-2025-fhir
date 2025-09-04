@@ -2,8 +2,7 @@
 Google Summer of Code 2025 FHIR Project Repo
 
 ## Environmental Variables  
-Include .env  
-
+ 
 ### .env example  
 AUTH_SERVER_URL=https://auth.example.com  
 SECURITY_TAG_PREFIX=ncpi-security  
