@@ -28,9 +28,6 @@ RUN poetry install --no-root --without dev --no-interaction --no-ansi
 
 COPY . .
 
-
-ENV PATH="$(poetry env info --path)/bin:$PATH"
-
 EXPOSE 8888
 
 
