@@ -31,7 +31,7 @@ COPY . .
 
 ENV PATH="$(poetry env info --path)/bin:$PATH"
 
-EXPOSE 8080
+EXPOSE 8888
 
 
 CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "fhir_proxy.main:app", "--bind", "0.0.0.0:8888", "--workers", "4"]
