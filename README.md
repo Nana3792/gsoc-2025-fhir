@@ -1,10 +1,10 @@
 # gsoc-2025-fhir
 Google Summer of Code 2025 FHIR Project Repo
 
-##Environmental Variables  
+## Environmental Variables  
 Include .env  
 
-# .env example  
+### .env example  
 AUTH_SERVER_URL=https://auth.example.com  
 SECURITY_TAG_PREFIX=ncpi-security  
 PROXY_TIMEOUT=3000  
