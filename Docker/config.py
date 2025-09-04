@@ -8,7 +8,7 @@ class Settings:
     ARBORIST_TIMEOUT = config("ARBORIST_TIMEOUT", cast=int, default=5)
 
     
-    HAPI_FHIR_URL = config("HAPI_FHIR_URL", default="http://host.docker.internal:8080/fhir")
+    HAPI_FHIR_URL = config("HAPI_FHIR_URL", default="http://localhost:8080/fhir")
     
     SECURITY_TAG_PREFIX = config("SECURITY_TAG_PREFIX", default="gen3|")
 
