@@ -1,6 +1,17 @@
 # gsoc-2025-fhir
 Google Summer of Code 2025 FHIR Project Repo
 
+##Environmental Variables  
+Include .env  
+
+# .env example  
+AUTH_SERVER_URL=https://auth.example.com  
+SECURITY_TAG_PREFIX=ncpi-security  
+PROXY_TIMEOUT=3000  
+ARBORIST_URL=https://arborist.example.com  
+HAPI_FHIR_URL=https://fhir.example.com  
+ARBORIST_TIMEOUT=5000  
+
 ## Prerequisites:  
 
 1. Maven  
