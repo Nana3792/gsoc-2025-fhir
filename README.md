@@ -170,7 +170,7 @@ export JWKS_ENDPOINT=https://qa.planx-pla.net/user/.well-known/jwks
 
 .env.test
 
-GEN_USER_URL=https://qa.planx-pla.net/user/user
+GEN_USER_URL=https://qa.planx-pla.net/user/user  
 FHIR_SERVER_URL=http://localhost:8080/fhir
 
 
