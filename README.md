@@ -165,3 +165,13 @@ export JWKS_ENDPOINT=https://qa.planx-pla.net/user/.well-known/jwks
 3. URL Parse: https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlparse
 4. FHIR Security: https://www.hl7.org/fhir/security.html
 5. Bearer Token Usage: https://www.rfc-editor.org/rfc/rfc6750
+
+## Unit Testing:
+
+.env.test
+
+GEN_USER_URL=https://qa.planx-pla.net/user/user
+FHIR_SERVER_URL=http://localhost:8080/fhir
+
+
+
