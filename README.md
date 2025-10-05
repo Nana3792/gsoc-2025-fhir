@@ -15,8 +15,6 @@ It provides a fully containerized FastAPI proxy, HAPI FHIR server, and Arborist 
 ---
 
 ## Table of Contents
-
-## Table of Contents
 1. [Contributor Information](#contributor-information)
 2. [Environment Variables](#environment-variables)
 3. [HAPI FHIR Server Setup](#hapi-fhir-server-setup)
