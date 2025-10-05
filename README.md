@@ -40,26 +40,31 @@ HAPI_FHIR_URL=https://fhir.example.com
 ARBORIST_TIMEOUT=5000  
 
 ## HAPI FHIR JPA SERVER:  
+```bash
 git clone https://github.com/hapifhir/hapi-fhir-jpaserver-starter.git  
 cd hapi-fhir-jpaserver-starter  
 
 mvn clean install  
 mvn spring-boot:run
-
+```
 
 ## PostgreSQL database:  
 FOR MacOs:  
 
+```bash
 brew install postgresql  
 brew services start postgresql  
-
+```
+```bash
 psql postgres -c "CREATE DATABASE hapi_database;"  
 psql postgres -c "CREATE USER hapi_user WITH PASSWORD 'Password';"  
 psql postgres -c "GRANT ALL PRIVILEGES ON DATABASE hapi_database TO hapi_user;"  
-
+```
+```bash
 nano pom.xml  
+```
+inside dependencies add:  
 
-inside dependencies add:      
 ```xml
 <dependency>  
   <groupId>org.postgresql</groupId>  
