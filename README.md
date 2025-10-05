@@ -174,7 +174,7 @@ Run the FHIR proxy locally using Docker Compose.
 
 ```bash
 docker-compose up --build
-
+```
 
 ## Unit Testing:  
 
