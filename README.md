@@ -161,18 +161,20 @@ export JWKS_ENDPOINT=https://qa.planx-pla.net/user/.well-known/jwks
 
 ##  Dockerization of the FHIR proxy  
 
-Run the FHIR proxy locally using Docker Compose. 
-The stack includes:  
-    - fhir-proxy – FastAPI service with Gunicorn, exposed on port 8888  
-    - hapi-fhir – HAPI FHIR server, exposed on port 8080  
-    - arborist – Authorization service, exposed on port 8081  
-Python dependencies are managed via Poetry. 
-Environment variables configure URLs, timeouts, and   security tags. 
-The proxy forwards requests to HAPI FHIR while enforcing security via Arborist.  
+
+Run the FHIR proxy locally using Docker Compose.
+
+- **Stack Components:**
+  - `fhir-proxy` – FastAPI service with Gunicorn, exposed on port 8888
+  - `hapi-fhir` – HAPI FHIR server, exposed on port 8080
+  - `arborist` – Authorization service, exposed on port 8081
+- **Dependencies:** Python packages managed via Poetry
+- **Configuration:** Environment variables control URLs, timeouts, and security tags
+- **Functionality:** Proxy forwards requests to HAPI FHIR while enforcing security via Arborist
 
 ```bash
-docker-compose up --build  
-```
+docker-compose up --build
+
 
 ## Unit Testing:  
 
