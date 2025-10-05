@@ -48,22 +48,20 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-## PostgreSQL database:  
-FOR MacOs:  
+## PostgreSQL Setup (MacOS example): 
 
 ```bash
 brew install postgresql  
 brew services start postgresql  
 ```
+
 ```bash
 psql postgres -c "CREATE DATABASE hapi_database;"  
 psql postgres -c "CREATE USER hapi_user WITH PASSWORD 'Password';"  
 psql postgres -c "GRANT ALL PRIVILEGES ON DATABASE hapi_database TO hapi_user;"  
 ```
-```bash
-nano pom.xml  
-```
-inside dependencies add:  
+
+Add PostgreSQL dependency to pom.xml:
 
 ```xml
 <dependency>  
@@ -73,9 +71,8 @@ inside dependencies add:
 </dependency>
 ``` 
 
+Configure application.yaml:
 
-
-application.yaml   
 ```yaml
   spring:  
     datasource:  
@@ -89,8 +86,8 @@ application.yaml
           hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgresDialect  
   ```
 
-
-## Synthea Data 
+## Data Ingestion
+### Synthea Data 
 
 git clone https://github.com/synthetichealth/synthea.git  
 cd synthea  
@@ -100,12 +97,9 @@ for ten records, the default is FHIR json.
 ./gradlew build  
 ./run_synthea -p 10  
 
+Data output: synthea/output/fhir/
 
-
-The data are here :  
-synthea/output/fhir/
-
-Order of ingestion:  
+Ingestion order: 
 1. Organization  
 2. Location  
 3. Practitioner  
@@ -119,33 +113,26 @@ Order of ingestion:
 11. CareTeam  
 12. CarePlan  
 
-## NCPI FHIR  
-### prerequisites:  
+### NCPI FHIR  
+Prerequisites: sushi 
+
+```bash
 sushi  
 npm install -g sushi  
 sushi .  
+```
 
-
+```bash
 git clone https://github.com/NIH-NCPI/ncpi-fhir-ig-2.git
 cd ncpi-fhir-ig-2
-
-
-
-Dependencies:  
-
-
-
-
 ./_updatePublisher.sh  
 ./_genonce.sh  
+```
 
 
-
-INGEST:  
+Ingest resources: 
 ```bash 
 for file in *.json; do
-  # Extract resource type and id from filename
-  # Filename pattern: ResourceType-ResourceId.json
   resource_type="${file%%-*}"
   resource_id="${file#*-}"
   resource_id="${resource_id%.json}"
@@ -162,7 +149,7 @@ for file in *.json; do
 ```
 <img width="492" height="217" alt="Screenshot 2025-08-08 at 2 34 44 PM" src="https://github.com/user-attachments/assets/009a9b64-8201-4977-a3e1-d4b1b65bdba3" />
 
-for testing:  
+test ingestion:  
 ```bash
 curl -X GET "http://localhost:8080/fhir/StructureDefinition?_summary=count" -H "Accept: application/fhir+json"
 curl -X GET "http://localhost:8080/fhir/CodeSystem?_summary=count" -H "Accept: application/fhir+json"
@@ -170,7 +157,7 @@ curl -X GET "http://localhost:8080/fhir/ValueSet?_summary=count" -H "Accept: app
 curl -X GET "http://localhost:8080/fhir/Patient?_summary=count" -H "Accept: application/fhir+json"
 ```
 
-## Authorization:
+## Proxy & Authorization:
 Architecture Flow  
 
 Client → Proxy: Sends request with Bearer token.  
@@ -180,12 +167,14 @@ FHIR → Proxy: Returns filtered data.
 Proxy → Client: Passes through response.  
 <img width="826" height="546" alt="Screenshot 2025-08-02 at 6 08 52 PM" src="https://github.com/user-attachments/assets/0e02c1b1-0277-4b96-9b59-db25453d6e56" />
 
-Arborist   
+Arborist setup
+
+```bash
 export OIDC_ISSUER=https://qa.planx-pla.net/user  
 export JWKS_ENDPOINT=https://qa.planx-pla.net/user/.well-known/jwks  
 
 ./bin/arborist --port 8081  
-
+```
 ##  Dockerization of the FHIR proxy  
 
 
