@@ -16,16 +16,17 @@ It provides a fully containerized FastAPI proxy, HAPI FHIR server, and Arborist 
 
 ## Table of Contents
 
-2. [Environment Variables](#environment-variables)  
-3. [HAPI FHIR Server Setup](#hapi-fhir-server-setup)  
-4. [PostgreSQL Setup](#postgresql-setup)  
-5. [Data Ingestion](#data-ingestion)  
-   - [Synthea Data](#synthea-data)  
-   - [NCPI FHIR](#ncpi-fhir)  
-6. [Proxy & Authorization](#proxy--authorization)  
-7. [Dockerization](#dockerization)  
-8. [Unit Testing](#unit-testing)  
-9. [Useful Links / References](#useful-links--references)  
+1. [Contributor Information](#contributor-information)
+2. [Environment Variables](#environment-variables)
+3. [HAPI FHIR Server Setup](#hapi-fhir-server-setup)
+4. [PostgreSQL Setup](#postgresql-setup)
+5. [Data Ingestion](#data-ingestion)
+   5.1. [Synthea Data](#synthea-data)
+   5.2. [NCPI FHIR](#ncpi-fhir)
+6. [Proxy & Authorization](#proxy--authorization)
+7. [Dockerization](#dockerization)
+8. [Unit Testing](#unit-testing)
+9. [Useful Links / References](#useful-links--references)
 
 ---
 ## Environmental Variables  
