@@ -91,14 +91,15 @@ Configure application.yaml:
 ## Data Ingestion
 ### Synthea Data 
 
+```bash
 git clone https://github.com/synthetichealth/synthea.git  
 cd synthea  
-
+```
 for ten records, the default is FHIR json. 
-  
+```bash
 ./gradlew build  
 ./run_synthea -p 10  
-
+```
 Data output: synthea/output/fhir/
 
 Ingestion order: 
@@ -162,11 +163,12 @@ curl -X GET "http://localhost:8080/fhir/Patient?_summary=count" -H "Accept: appl
 ## Proxy & Authorization:
 Architecture Flow  
 
-Client → Proxy: Sends request with Bearer token
-Proxy → Arborist: Validates token + gets resources
-Proxy → FHIR: Forwards request with _security tags
-FHIR → Proxy: Returns filtered data
-Proxy → Client: Passes through response
+- Client → Proxy: Sends request with Bearer token
+- Proxy → Arborist: Validates token + gets resources
+- Proxy → FHIR: Forwards request with _security tags
+- FHIR → Proxy: Returns filtered data
+- Proxy → Client: Passes through response
+
 
 <img width="826" height="546" alt="Screenshot 2025-08-02 at 6 08 52 PM" src="https://github.com/user-attachments/assets/0e02c1b1-0277-4b96-9b59-db25453d6e56" />
 
