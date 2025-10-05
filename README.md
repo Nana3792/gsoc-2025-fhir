@@ -159,14 +159,16 @@ export JWKS_ENDPOINT=https://qa.planx-pla.net/user/.well-known/jwks
 
 ./bin/arborist --port 8081  
 
-##Dockerization of the FHIR proxy
+##  Dockerization of the FHIR proxy  
+Dockerized Setup  
+Run the FHIR proxy locally using Docker Compose. The stack includes:  
+fhir-proxy – FastAPI service with Gunicorn, exposed on port 8888  
+hapi-fhir – HAPI FHIR server, exposed on port 8080  
+arborist – Authorization service, exposed on port 8081  
+Python dependencies are managed via Poetry. Environment variables configure URLs, timeouts, and   security tags. The proxy forwards requests to HAPI FHIR while enforcing security via Arborist.  
+docker-compose up --build  
 
-## Unit Testing:
-.env.test
-
-GEN_USER_URL=https://qa.planx-pla.net/user/user  
-FHIR_SERVER_URL=http://localhost:8080/fhir
-## Unit Testing
+## Unit Testing:  
 
 The project includes unit tests to verify the FHIR proxy’s functionality and security.  
 
@@ -174,7 +176,11 @@ The project includes unit tests to verify the FHIR proxy’s functionality and s
 - **What is tested:**  
   - Retrieval of individual FHIR resources  
   - Search queries with `_security` filters  
-  - Enforcement of bearer token permissions  
+  - Enforcement of bearer token permissions
+.env.test
+
+GEN_USER_URL=https://qa.planx-pla.net/user/user  
+FHIR_SERVER_URL=http://localhost:8080/fhir
 
 All external services (Gen3 authorization and HAPI FHIR server) are mocked so tests can run locally without a live server.  
 
@@ -182,7 +188,7 @@ To run the tests:
 
 ```bash
 pytest -v tests/
-
+```
 
 # LINKS:
 1. Create a FastAPI instance: https://fastapi.tiangolo.com/tutorial/first-steps/  
