@@ -32,13 +32,15 @@ It provides a fully containerized FastAPI proxy, HAPI FHIR server, and Arborist 
 ## Environmental Variables  
  
 ### .env example  
+
+```bash
 AUTH_SERVER_URL=https://auth.example.com  
 SECURITY_TAG_PREFIX=ncpi-security  
 PROXY_TIMEOUT=3000  
 ARBORIST_URL=https://arborist.example.com  
 HAPI_FHIR_URL=https://fhir.example.com  
 ARBORIST_TIMEOUT=5000  
-
+```
 ## HAPI FHIR JPA SERVER:  
 ```bash
 git clone https://github.com/hapifhir/hapi-fhir-jpaserver-starter.git  
