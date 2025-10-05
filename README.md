@@ -159,6 +159,31 @@ export JWKS_ENDPOINT=https://qa.planx-pla.net/user/.well-known/jwks
 
 ./bin/arborist --port 8081  
 
+##Dockerization of the FHIR proxy
+
+## Unit Testing:
+.env.test
+
+GEN_USER_URL=https://qa.planx-pla.net/user/user  
+FHIR_SERVER_URL=http://localhost:8080/fhir
+## Unit Testing
+
+The project includes unit tests to verify the FHIR proxy’s functionality and security.  
+
+- **Tools:** `pytest`, `pytest-asyncio`, `pytest-httpx`  
+- **What is tested:**  
+  - Retrieval of individual FHIR resources  
+  - Search queries with `_security` filters  
+  - Enforcement of bearer token permissions  
+
+All external services (Gen3 authorization and HAPI FHIR server) are mocked so tests can run locally without a live server.  
+
+To run the tests:
+
+```bash
+pytest -v tests/
+
+
 # LINKS:
 1. Create a FastAPI instance: https://fastapi.tiangolo.com/tutorial/first-steps/  
 2. Async Support: https://www.python-httpx.org/async/  
@@ -166,12 +191,7 @@ export JWKS_ENDPOINT=https://qa.planx-pla.net/user/.well-known/jwks
 4. FHIR Security: https://www.hl7.org/fhir/security.html
 5. Bearer Token Usage: https://www.rfc-editor.org/rfc/rfc6750
 
-## Unit Testing:
 
-.env.test
-
-GEN_USER_URL=https://qa.planx-pla.net/user/user  
-FHIR_SERVER_URL=http://localhost:8080/fhir
 
 
 
