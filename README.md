@@ -1,6 +1,33 @@
 # gsoc-2025-fhir
-Google Summer of Code 2025 FHIR Project Repo
+Google Summer of Code 2025 – FHIR Proxy Project
 
+This project implements a FHIR proxy on Gen3, supporting NCPI FHIR resources with secure access control. 
+It provides a fully containerized FastAPI proxy, HAPI FHIR server, and Arborist authorization service for local or cloud deployment.
+
+---
+
+## Contributor Information
+- **Name:** Andriana Sielli  
+- **Organization:** Center for Translational Data Science, University of Chicago  
+- **Mentors:** Alex Vantol, Kyle Burton  
+- **GSoC Year:** 2025
+  
+---
+
+## Table of Contents
+
+2. [Environment Variables](#environment-variables)  
+3. [HAPI FHIR Server Setup](#hapi-fhir-server-setup)  
+4. [PostgreSQL Setup](#postgresql-setup)  
+5. [Data Ingestion](#data-ingestion)  
+   - [Synthea Data](#synthea-data)  
+   - [NCPI FHIR](#ncpi-fhir)  
+6. [Proxy & Authorization](#proxy--authorization)  
+7. [Dockerization](#dockerization)  
+8. [Unit Testing](#unit-testing)  
+9. [Useful Links / References](#useful-links--references)  
+
+---
 ## Environmental Variables  
  
 ### .env example  
@@ -10,12 +37,6 @@ PROXY_TIMEOUT=3000
 ARBORIST_URL=https://arborist.example.com  
 HAPI_FHIR_URL=https://fhir.example.com  
 ARBORIST_TIMEOUT=5000  
-
-## Prerequisites:  
-
-1. Maven  
-sudo apt install maven -y
-
 
 ## HAPI FHIR JPA SERVER:  
 git clone https://github.com/hapifhir/hapi-fhir-jpaserver-starter.git  
@@ -185,18 +206,21 @@ The project includes unit tests to verify the FHIR proxy’s functionality and s
   - Retrieval of individual FHIR resources  
   - Search queries with `_security` filters  
   - Enforcement of bearer token permissions
-.env.test
 
-GEN_USER_URL=https://qa.planx-pla.net/user/user  
-FHIR_SERVER_URL=http://localhost:8080/fhir
-
-All external services (Gen3 authorization and HAPI FHIR server) are mocked so tests can run locally without a live server.  
+All external services (Gen3 authorization and HAPI FHIR server) are mocked so tests can run locally without a live server. 
 
 To run the tests:
 
 ```bash
 pytest -v tests/
 ```
+ 
+Environment file: .env.test
+
+GEN_USER_URL=https://qa.planx-pla.net/user/user  
+FHIR_SERVER_URL=http://localhost:8080/fhir
+
+
 
 # LINKS:
 1. Create a FastAPI instance: https://fastapi.tiangolo.com/tutorial/first-steps/  
