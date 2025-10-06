@@ -1,8 +1,9 @@
 # gsoc-2025-fhir
 Google Summer of Code 2025 – FHIR Proxy Project
 
-This project implements a FHIR proxy on Gen3, supporting NCPI FHIR resources with secure access control. 
+This project implements a FHIR proxy on Gen3, supporting NCPI FHIR resources with secure access control.  
 It provides a fully containerized FastAPI proxy, HAPI FHIR server, and Arborist authorization service for local or cloud deployment.
+
 
 ---
 
