@@ -50,7 +50,7 @@ cd hapi-fhir-jpaserver-starter
 mvn clean install  
 mvn spring-boot:run
 ```
-
+You can access the Swagger  UI at http://localhost:8080/fhir/swagger-ui/   
 ## PostgreSQL Setup (MacOS example): 
 
 ```bash
@@ -59,7 +59,11 @@ brew services start postgresql
 ```  
 To test that it's running:  
 ```bash
-brew services list
+brew services list | grep postgresql
+```
+To test connection: 
+```bash
+psql postgres
 ```
 ```bash  
 psql postgres -c "CREATE DATABASE hapi_database;"  
@@ -67,6 +71,7 @@ psql postgres -c "CREATE USER hapi_user WITH PASSWORD 'Password';"
 psql postgres -c "GRANT ALL PRIVILEGES ON DATABASE hapi_database TO hapi_user;"  
 ```
 
+In the hapi-fhir-jpaserver-starter folder there is a pom.xml.  
 Add PostgreSQL dependency to pom.xml:
 
 ```xml
@@ -75,22 +80,61 @@ Add PostgreSQL dependency to pom.xml:
   <artifactId>postgresql</artifactId>  
   <scope>runtime</scope>  
 </dependency>
-``` 
+```
+save the file and then rebuild:
+```bash 
+mvn clean install
+```
+
+Open the application.yaml in the following directory  
+
+hapi-fhir-jpaserver-starter/src/main/resources/application.yaml  
 
 Configure application.yaml:
 
+at the B. Core Spring part configure as follows
+ 
+
 ```yaml
-  spring:  
-    datasource:  
-        url: jdbc:postgresql://localhost:5432/hapi_database  
-        username: hapi_user  
-        password: Password  
-        driverClassName: org.postgresql.Driver  
-        max-active: 15  
-    jpa:  
-        properties:  
-          hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgresDialect  
-  ```
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hapi_database
+    username: hapi_user
+    password: Password
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 15
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: false
+        show_sql: false
+        # Hibernate dialect is auto-detected except for H2/Postgres.
+        # If using H2:     ca.uhn.fhir.jpa.model.dialect.HapiFhirH2Dialect
+        # If using Postgres: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgresDialect
+        dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgresDialect
+
+        # --- Optional Hibernate DDL & tuning ---
+        hbm2ddl:
+          auto: update
+        jdbc:
+          batch_size: 20
+        cache:
+          use_query_cache: false
+          use_second_level_cache: false
+          use_structured_entries: false
+          use_minimal_puts: false
+
+        # --- Hibernate Search (Lucene/Elasticsearch) ---
+        search:
+          enabled: false
+```
+
+```bash 
+mvn spring-boot:run
+```
+
 
 ## Data Ingestion
 ### Synthea Data 
