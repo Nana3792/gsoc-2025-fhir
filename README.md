@@ -56,9 +56,12 @@ mvn spring-boot:run
 ```bash
 brew install postgresql  
 brew services start postgresql  
-```
-
+```  
+To test that it's running:  
 ```bash
+brew services list
+```
+```bash  
 psql postgres -c "CREATE DATABASE hapi_database;"  
 psql postgres -c "CREATE USER hapi_user WITH PASSWORD 'Password';"  
 psql postgres -c "GRANT ALL PRIVILEGES ON DATABASE hapi_database TO hapi_user;"  
