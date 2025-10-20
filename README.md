@@ -131,6 +131,7 @@ spring:
           enabled: false
 ```
 
+Go to the hapi-fhir-jpaserver-starter that there is the pom.xml and then run: 
 ```bash 
 mvn spring-boot:run
 ```
