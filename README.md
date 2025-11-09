@@ -77,13 +77,13 @@ psql -U hapi_user -d hapi_database
 ```
 
 In the hapi-fhir-jpaserver-starter folder there is a pom.xml.  
-Add PostgreSQL dependency to pom.xml:
+Ensure the following PostgreSQL dependency is present in pom.xml
 
 ```xml
 <dependency>  
   <groupId>org.postgresql</groupId>  
   <artifactId>postgresql</artifactId>  
-  <scope>runtime</scope>  
+  <!-- <scope>runtime</scope> optional -->
 </dependency>
 ```
 save the file and then rebuild:
