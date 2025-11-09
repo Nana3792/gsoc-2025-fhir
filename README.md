@@ -149,11 +149,13 @@ mvn spring-boot:run
 git clone https://github.com/synthetichealth/synthea.git  
 cd synthea  
 ```
-for ten records, the default is FHIR json. 
+for ten records: 
 ```bash
 ./gradlew build  
 ./run_synthea -p 10  
 ```
+the default is FHIR json. 
+
 Data output: synthea/output/fhir/
 
 Ingestion order: 
