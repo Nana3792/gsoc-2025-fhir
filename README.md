@@ -61,14 +61,19 @@ To test that it's running:
 ```bash
 brew services list | grep postgresql
 ```
-To test connection: 
+Connect using:
 ```bash
 psql postgres
 ```
+Once inside, create the postgres superuser, the HAPI user, and the database:
 ```bash  
 psql postgres -c "CREATE DATABASE hapi_database;"  
 psql postgres -c "CREATE USER hapi_user WITH PASSWORD 'Password';"  
 psql postgres -c "GRANT ALL PRIVILEGES ON DATABASE hapi_database TO hapi_user;"  
+```
+Now you can test the login:
+```bash  
+psql -U hapi_user -d hapi_database
 ```
 
 In the hapi-fhir-jpaserver-starter folder there is a pom.xml.  
@@ -92,7 +97,7 @@ hapi-fhir-jpaserver-starter/src/main/resources/application.yaml
 
 Configure application.yaml:
 
-at the B. Core Spring part configure as follows
+Find section “B. Core Spring” and replace it with:
  
 
 ```yaml
