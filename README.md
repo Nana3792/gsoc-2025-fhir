@@ -89,6 +89,7 @@ Ensure the following PostgreSQL dependency is present in pom.xml
 save the file and then rebuild:
 ```bash 
 mvn clean install
+mvn clean install -DskipTests
 ```
 
 Open the application.yaml in the following directory  
