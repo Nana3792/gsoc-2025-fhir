@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: gen3-fhir-proxy
   tag: latest
-  pullPolicy: Never           # Uses your local Docker image only
+  pullPolicy: Never           
 
 service:
   type: ClusterIP
