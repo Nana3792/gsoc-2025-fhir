@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository: gen3-fhir-proxy
+  tag: latest
+  pullPolicy: Never           # Uses your local Docker image only
+
+service:
+  type: ClusterIP
+  port: 8888
+
+env:
+  AUTH_SERVER_URL: "http://host.docker.internal:8081"
+  ARBORIST_URL: "http://host.docker.internal:8081"
+  HAPI_FHIR_URL: "http://host.docker.internal:8080/fhir"
+  SECURITY_TAG_PREFIX: "gen3"
+  PROXY_TIMEOUT: "3000"
+  ARBORIST_TIMEOUT: "5000"
