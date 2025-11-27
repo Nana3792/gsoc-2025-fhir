@@ -47,8 +47,7 @@ ARBORIST_TIMEOUT=5000
 git clone https://github.com/hapifhir/hapi-fhir-jpaserver-starter.git  
 cd hapi-fhir-jpaserver-starter
 ```
-
-You can access the Swagger  UI at http://localhost:8080/fhir/swagger-ui/   
+   
 ## PostgreSQL Setup (MacOS example): 
 
 ```bash
