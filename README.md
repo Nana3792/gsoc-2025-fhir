@@ -45,11 +45,9 @@ ARBORIST_TIMEOUT=5000
 ## HAPI FHIR JPA SERVER:  
 ```bash
 git clone https://github.com/hapifhir/hapi-fhir-jpaserver-starter.git  
-cd hapi-fhir-jpaserver-starter  
-
-mvn clean install  
-mvn spring-boot:run
+cd hapi-fhir-jpaserver-starter
 ```
+
 You can access the Swagger  UI at http://localhost:8080/fhir/swagger-ui/   
 ## PostgreSQL Setup (MacOS example): 
 
@@ -61,11 +59,11 @@ To test that it's running:
 ```bash
 brew services list | grep postgresql
 ```
-Connect using:
+If you want to connect, use:
 ```bash
 psql postgres
 ```
-Once inside, create the postgres superuser, the HAPI user, and the database:
+Then, create the postgres superuser, the HAPI user, and the database:
 ```bash  
 psql postgres -c "CREATE DATABASE hapi_database;"  
 psql postgres -c "CREATE USER hapi_user WITH PASSWORD 'Password';"  
@@ -77,7 +75,7 @@ psql -U hapi_user -d hapi_database
 ```
 
 In the hapi-fhir-jpaserver-starter folder there is a pom.xml.  
-Ensure the following PostgreSQL dependency is present in pom.xml
+The following PostgreSQL dependency is present in pom.xml
 
 ```xml
 <dependency>  
@@ -86,11 +84,6 @@ Ensure the following PostgreSQL dependency is present in pom.xml
   <!-- <scope>runtime</scope> optional -->
 </dependency>
 ```
-save the file and then rebuild:
-```bash 
-mvn clean install
-mvn clean install -DskipTests
-```
 
 Open the application.yaml in the following directory  
 
@@ -98,11 +91,11 @@ hapi-fhir-jpaserver-starter/src/main/resources/application.yaml
 
 Configure application.yaml:
 
-Find section “B. Core Spring” and replace it with:
+Find section “B. Core Spring” and replace the following sections:
  
 
 ```yaml
-spring:
+
   datasource:
     url: jdbc:postgresql://localhost:5432/hapi_database
     username: hapi_user
@@ -132,15 +125,14 @@ spring:
           use_structured_entries: false
           use_minimal_puts: false
 
-        # --- Hibernate Search (Lucene/Elasticsearch) ---
-        search:
-          enabled: false
+        
 ```
 
 Go to the hapi-fhir-jpaserver-starter that there is the pom.xml and then run: 
 ```bash 
 mvn spring-boot:run
 ```
+You can access the Swagger  UI at http://localhost:8080/fhir/swagger-ui/ 
 
 
 ## Data Ingestion
