@@ -221,9 +221,9 @@ Architecture Flow
 <img width="826" height="546" alt="Screenshot 2025-08-02 at 6 08 52 PM" src="https://github.com/user-attachments/assets/0e02c1b1-0277-4b96-9b59-db25453d6e56" />
 
 
-pip install poetry
-poetry install
-poetry run uvicorn main:app --reload --port 8082
+pip install poetry  
+poetry install  
+poetry run uvicorn main:app --reload --port 8082  
 
 
 
