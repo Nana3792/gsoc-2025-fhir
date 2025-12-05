@@ -223,7 +223,8 @@ Architecture Flow
 
 pip install poetry  
 poetry install  
-poetry run uvicorn main:app --reload --port 8082  
+poetry run uvicorn app.main:app --reload --port 8082
+
 
 
 
