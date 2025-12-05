@@ -11,7 +11,7 @@ RUN pip3 install poetry
 
 WORKDIR /app
 
-COPY pyproject.toml poetry.lock /app/
+COPY pyproject.toml /app/
 
 RUN dnf -y install \
         gcc gcc-c++ make \
