@@ -16,11 +16,12 @@ services:
     image: hapiproject/hapi:latest
     container_name: hapi-fhir
     ports:
-      - "8080:8080"
+      - "8082:8080"
 
   arborist:
-    image: uc-cdis/arborist:latest
+    image: alpine
     container_name: arborist
+    command: ["sh", "-c", "while true; do echo 'Mock Arborist running'; sleep 6$
     ports:
       - "8081:8081"
 
