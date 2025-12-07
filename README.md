@@ -278,7 +278,12 @@ Environment file: .env.test
 GEN_USER_URL=https://qa.planx-pla.net/user/user  
 FHIR_SERVER_URL=http://localhost:8080/fhir
 
+##HELM:
 
+###FOR PROXY 
+
+
+###FOR HAPI FHIR SERVER
 
 # LINKS:
 1. Create a FastAPI instance: https://fastapi.tiangolo.com/tutorial/first-steps/  
