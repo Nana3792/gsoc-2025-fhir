@@ -13,6 +13,8 @@ WORKDIR /app
 
 COPY pyproject.toml /app/
 
+COPY . .
+
 RUN dnf -y install \
         gcc gcc-c++ make \
         libffi-devel \
@@ -24,7 +26,8 @@ RUN dnf -y install \
         git \
     && dnf clean all
 
-RUN poetry install --no-root --without dev --no-interaction --no-ansi
+RUN poetry install --without dev --no-interaction --no-ansi
+RUN pip3 install uvicorn
 
 COPY . .
 
@@ -32,5 +35,4 @@ EXPOSE 8888
 
 
 CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "fhir_proxy.main:app", "--bind", "0.0.0.0:8888", "--workers", "4"]
-
 
