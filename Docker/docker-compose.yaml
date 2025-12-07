@@ -21,7 +21,7 @@ services:
   arborist:
     image: alpine
     container_name: arborist
-    command: ["sh", "-c", "while true; do echo 'Mock Arborist running'; sleep 6$
+    command: ["sh", "-c", "while true; do echo 'Mock Arborist running'; sleep 60; done"]
     ports:
       - "8081:8081"
 
