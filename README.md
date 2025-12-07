@@ -250,7 +250,8 @@ Run the FHIR proxy locally using Docker Compose.
 - **Functionality:** Proxy forwards requests to HAPI FHIR while enforcing security via Arborist
 
 ```bash
-docker-compose -f docker-compose.yaml up --build
+docker compose build --no-cache
+docker compose up
 
 ```
 
