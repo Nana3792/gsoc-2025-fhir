@@ -312,11 +312,11 @@ minikube service fhir-proxy
 docker build -t hapi-fhir-server:latest .
 ```
 ```bash
-helm upgrade --install hapi-fhir ./hapi-fhir-chart -f values.yaml
+helm upgrade hapi-fhir . -f values.yaml
 
 ```
 ```bash
-kubectl get pods
+minikube service hapi-fhir
 ```
 
 # LINKS:
