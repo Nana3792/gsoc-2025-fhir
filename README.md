@@ -280,6 +280,32 @@ FHIR_SERVER_URL=http://localhost:8080/fhir
 
 ## HELM:
 
+
+Start Minikube
+```bash
+brew install minikube
+minikube start
+kubectl get nodes
+```
+
+Switch Docker to Minikube
+```bash
+eval $(minikube docker-env)
+```
+
+In the Docker folder, where the Dockerfile is run:
+```bash
+docker build -t fhir-proxy:latest .
+```
+
+In the Helm folder run: 
+
+```bash
+helm upgrade fhir-stack . -f values.yaml
+kubectl get pods
+minikube service fhir-proxy
+```
+
 ### FOR PROXY 
 
 
