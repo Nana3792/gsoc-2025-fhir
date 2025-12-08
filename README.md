@@ -280,7 +280,7 @@ FHIR_SERVER_URL=http://localhost:8080/fhir
 
 ## HELM:
 
-
+### FOR PROXY 
 Start Minikube
 ```bash
 brew install minikube
@@ -306,10 +306,18 @@ kubectl get pods
 minikube service fhir-proxy
 ```
 
-### FOR PROXY 
-
-
 ### FOR HAPI FHIR SERVER
+
+```bash
+docker build -t hapi-fhir-server:latest .
+```
+```bash
+helm upgrade --install hapi-fhir ./hapi-fhir-chart -f values.yaml
+
+```
+```bash
+kubectl get pods
+```
 
 # LINKS:
 1. Create a FastAPI instance: https://fastapi.tiangolo.com/tutorial/first-steps/  
