@@ -1,5 +1,9 @@
+ARG AZLINUX_BASE_VERSION=3.13-pythonnginx
+FROM quay.io/cdis/amazonlinux-base:${AZLINUX_BASE_VERSION} AS base
 
-FROM amazonlinux:2023
+USER root
+
+
 RUN dnf -y update && \
     dnf -y install python3.9 python3.9-pip python3.9-devel gcc make && \
     alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1 && \
@@ -25,6 +29,9 @@ RUN dnf -y install \
         sqlite sqlite-devel \
         git \
     && dnf clean all
+
+USER gen3
+
 
 RUN poetry install --without dev --no-interaction --no-ansi
 RUN pip3 install uvicorn
